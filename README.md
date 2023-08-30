@@ -12,10 +12,14 @@ A custom genshin-like toon shader, based on URP
 - **Normal Map**
 - **Face Shadow**, based on SDF Light Map
 - **Face Blush**
-- **Nonmetallic and Metallic Specuar**, based on Blinn-Phong Model
+- **Nonmetallic and Metallic Specular**, based on Blinn-Phong Model
 - **Rim Light**, based on Depth Texture and Fresnel
 - **Outline**, based on Back Facing
 - **Double-Sided Rendering**
+
+## Scripts
+
+- **MaterialUpdater** : pass face direction to material
 
 ## Render Example
 
