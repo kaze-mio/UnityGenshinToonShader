@@ -8,6 +8,7 @@ CBUFFER_START(UnityPerMaterial)
     half    _SrcBlend;
     half    _DstBlend;
 
+    half4   _LightDirectionMultiplier;
     half    _ShadowOffset;
     half    _ShadowSmoothness;
     half4   _ShadowColor;
@@ -29,8 +30,16 @@ CBUFFER_START(UnityPerMaterial)
     half    _RimThreshold;
     half    _RimIntensity;
 
+    half    _UseSmoothNormal;
     half    _OutlineWidth;
+    half4   _OutlineWidthParams;
+    half    _OutlineZOffset;
+    half4   _ScreenOffset;
     half4   _OutlineColor;
+    half4   _OutlineColor2;
+    half4   _OutlineColor3;
+    half4   _OutlineColor4;
+    half4   _OutlineColor5;
 CBUFFER_END
 
 TEXTURE2D(_BaseMap);            SAMPLER(sampler_BaseMap);

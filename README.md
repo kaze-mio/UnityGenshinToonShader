@@ -21,10 +21,8 @@ A custom genshin-like toon shader, based on URP
 
 - **MaterialUpdater** : pass face direction to material
 
-## Render Example
+## Render Examples
 
-without post-processing:
-![image_0](image_0.png)
+![image_0](Images/image_0.png)
+![image_1](Images/image_1.png)
 
-with post-processing:
-![image_1](image_1.png)

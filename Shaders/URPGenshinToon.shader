@@ -13,9 +13,10 @@ Shader "URPGenshinToon"
 
         [Header(Shadow)]
         _LightMap("Light Map", 2D) = "white" {}
+        _LightDirectionMultiplier("Light Direction Multiplier", Vector) = (1,1,1,0)
         _ShadowOffset("Shadow Offset", Float) = 0
         _ShadowSmoothness("Shadow Smoothness", Float) = 0
-        _ShadowColor("Shadow Color", Color) = (1,1,1,1)
+        [HDR] _ShadowColor("Shadow Color", Color) = (1,1,1,1)
         _ShadowRamp("Shadow Ramp", 2D) = "white" {}
         [ToggleUI] _UseCustomMaterialType("Use Custom Material Type", Float) = 0
         _CustomMaterialType("Custom Material Type", Float) = 1
@@ -51,8 +52,16 @@ Shader "URPGenshinToon"
         _RimIntensity("Rim Intensity", Float) = 1
 
         [Header(Outline)]
+        [ToggleUI] _UseSmoothNormal("Use Smooth Normal", Float) = 0
         _OutlineWidth("Outline Width", Float) = 1
+        _OutlineWidthParams("Outline Width Params", Vector) = (0,1,0,1)
+        _OutlineZOffset("Outline Z Offset", Float) = 0
+        _ScreenOffset("Screen Offset", Vector) = (0,0,0,0)
         _OutlineColor("Outline Color", Color) = (0,0,0,1)
+        _OutlineColor2("Outline Color 2", Color) = (0,0,0,1)
+        _OutlineColor3("Outline Color 3", Color) = (0,0,0,1)
+        _OutlineColor4("Outline Color 4", Color) = (0,0,0,1)
+        _OutlineColor5("Outline Color 5", Color) = (0,0,0,1)
     }
 
     Subshader
@@ -75,6 +84,30 @@ Shader "URPGenshinToon"
             Blend[_SrcBlend][_DstBlend]
 
             HLSLPROGRAM
+
+            // Universal Pipeline keywords
+            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
+            #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+            #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
+            #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
+            #pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
+            #pragma multi_compile_fragment _ _SHADOWS_SOFT
+            #pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
+            #pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
+            #pragma multi_compile_fragment _ _LIGHT_LAYERS
+            #pragma multi_compile_fragment _ _LIGHT_COOKIES
+            #pragma multi_compile _ _FORWARD_PLUS
+            #pragma multi_compile_fragment _ _WRITE_RENDERING_LAYERS
+
+            // Unity defined keywords
+            #pragma multi_compile _ LIGHTMAP_SHADOW_MIXING
+            #pragma multi_compile _ SHADOWS_SHADOWMASK
+            #pragma multi_compile _ DIRLIGHTMAP_COMBINED
+            #pragma multi_compile _ LIGHTMAP_ON
+            #pragma multi_compile _ DYNAMICLIGHTMAP_ON
+            #pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
+            #pragma multi_compile_fog
+            #pragma multi_compile_fragment _ DEBUG_DISPLAY
 
             #pragma shader_feature_local_fragment _DOUBLE_SIDED
             #pragma shader_feature_local_fragment _EMISSION
