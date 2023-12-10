@@ -21,6 +21,16 @@ A custom genshin-like toon shader, based on URP
 
 - **MaterialUpdater** : pass face direction to material
 
+## References
+
+- A Unity sample project, for rendering Genshin characters like Nahida.
+
+  [NahidaRenderProject](https://github.com/kaze-mio/NahidaRenderProject)
+
+- A genshin-like post processing render feature, based on URP.
+
+  [UnityGenshinPostProcessing](https://github.com/kaze-mio/UnityGenshinPostProcessing)
+
 ## Render Examples
 
 ![image_0](Images/image_0.png)
